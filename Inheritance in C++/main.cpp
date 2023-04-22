@@ -38,14 +38,8 @@ public:
 		}
 	}
 
-	virtual void ShowInformation()
-	{
-		cout << "Name:  " << NameOfTheGame << endl;
-		cout << "Release Date:  " << ReleaseDate << endl;
-		cout << "Company Name:  " << CompanyName << endl;
-		cout << "Cost:  " << Cost << endl;
-	}
-    
+	virtual void ShowInformation() = 0;
+
 	~VideoGames()
 	{
 		cout << "Destructor called to avoid memory leak(VideoGames)" << endl;
