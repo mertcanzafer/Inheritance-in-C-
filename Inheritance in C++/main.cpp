@@ -66,7 +66,7 @@ public:
 
 	void isExclusive()
 	{
-		// Playstation Studios Generaly release their videogames to pc platform after min 4 years
+		// Playstation Studios Generaly release their videogames to pc platform after min 4 years later
 		// XBOX games generaly comes to PC platforms
 		if (ConsolType == "PS4" || ConsolType == "PS5")
 		{
