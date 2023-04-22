@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <list>
 using namespace std;
 
 /*                               Inheritance of OOP(Object Orianted Programming)                          */
@@ -8,7 +9,7 @@ class VideoGames {
 
 protected:
 	string NameOfTheGame;
-	int ReleaseDate;   
+	int ReleaseDate;
 	string CompanyName;
 	long int Cost;  // The amount of money in USD Your company invested
 public:
@@ -37,14 +38,18 @@ public:
 		}
 	}
 
-    virtual void ShowInformation()
+	virtual void ShowInformation()
 	{
-		cout << "Name:  " << NameOfTheGame<<endl;
-		cout << "Release Date:  " << ReleaseDate<<endl;
-		cout << "Company Name:  " << CompanyName<<endl;
-		cout << "Cost:  " << Cost<<endl;
+		cout << "Name:  " << NameOfTheGame << endl;
+		cout << "Release Date:  " << ReleaseDate << endl;
+		cout << "Company Name:  " << CompanyName << endl;
+		cout << "Cost:  " << Cost << endl;
 	}
-
+    
+	~VideoGames()
+	{
+		cout << "Destructor called to avoid memory leak(VideoGames)" << endl;
+	}
 };
 
 
@@ -94,21 +99,27 @@ public:
 		cout << "Number of Copied Sold:  " << NumberOfCopiedSold << endl;
 	}
 
+	~ConsolGames()
+	{
+		cout << "Destructor called to avoid memory leak(Consol Games)" << endl;
+	}
+};
+
+
+class IndieGames : public VideoGames {
+
+private:
+
+	string GameType; // Is it a platform , Action RPG...
+	string PublisherName;  // Most of the indie games requires publishers from the outside
+	list<string>* DigitalPlatforms;    // Steam, EpicGames, Origin, GamePass...
+
+
 };
 
 
 int main()
 {
-	VideoGames MyGame("The Witcher 3",2015,"CD Red Project",6000000);
-
-
-	MyGame.ShowInformation();
-	MyGame.Anniversary();
-	MyGame.profit(1000000000);
-
-	//------------------------------
-	cout << endl;
-
 	VideoGames* MyConsolGame{ NULL };
 
 	MyConsolGame = new ConsolGames("The Last Of Us", 2017, "Naughty Dog", 120000000, "PS4", 30000000); 
@@ -117,6 +128,9 @@ int main()
 	MyConsolGame->Anniversary();
 	MyConsolGame->profit(200000000);
 
+
+
+	delete MyConsolGame;
 
 	cout << endl;
 	return 0;
