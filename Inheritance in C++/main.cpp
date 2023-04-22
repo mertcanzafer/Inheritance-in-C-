@@ -40,7 +40,7 @@ public:
 
 	virtual void ShowInformation() = 0;
 
-	~VideoGames()
+    virtual ~VideoGames()
 	{
 		cout << "Destructor called to avoid memory leak(VideoGames)" << endl;
 	}
@@ -93,9 +93,9 @@ public:
 		cout << "Number of Copied Sold:  " << NumberOfCopiedSold << endl;
 	}
 
-	~ConsolGames()
+	virtual ~ConsolGames()
 	{
-		cout << "Destructor called to avoid memory leak(Consol Games)" << endl;
+		cout << "Destructor called to avoid memory leak(ConsolGames)" << endl;
 	}
 };
 
