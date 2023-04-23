@@ -85,10 +85,10 @@ public:
 
 	void ShowInformation()
 	{
-		cout << "Name:  " << NameOfTheGame << endl;
-		cout << "Release Date:  " << ReleaseDate << endl;
-		cout << "Company Name:  " << CompanyName << endl;
-		cout << "Cost:  " << Cost << endl;
+		cout << "Name:  " << this->NameOfTheGame << endl;
+		cout << "Release Date:  " << this->ReleaseDate << endl;
+		cout << "Company Name:  " << this->CompanyName << endl;
+		cout << "Cost:  " << this->Cost << endl;
 		cout << "Consol Type:  " << ConsolType << endl;
 		cout << "Number of Copied Sold:  " << NumberOfCopiedSold << endl;
 	}
@@ -108,23 +108,88 @@ private:
 	string PublisherName;  // Most of the indie games requires publishers from the outside
 	list<string>* DigitalPlatforms;    // Steam, EpicGames, Origin, GamePass...
 
+public:
 
+	IndieGames(string NameOftheGame = "", int ReleaseDate = 0, string CompanyName = "", long int Cost = 0,
+		string GameType = "", string PublisherName = "")
+		:VideoGames(NameOftheGame, ReleaseDate, CompanyName, Cost), DigitalPlatforms{ NULL }
+	{
+		this->GameType = GameType;
+		this->PublisherName = PublisherName;
+		DigitalPlatforms = new list<string>;
+	}
+    
+	void InputPlatforms()
+	{
+		size_t n{};
+		string PlatformName;
+
+		cout << "Please enter how many platforms your game have: ";
+		cin >> n;
+		cin.ignore();
+		cout << "Please enter Platform Name where your game will be released." << endl;
+		
+		for (size_t i = 0; i < n; ++i)
+		{
+			getline(cin, PlatformName);
+			DigitalPlatforms->push_back(PlatformName);
+		}
+
+		cout << endl<<endl;
+
+	}
+	
+	void ShowInformation()
+	{
+		cout << "Name:  " << this->NameOfTheGame << endl;
+		cout << "Release Date:  " << this->ReleaseDate << endl;
+		cout << "Company Name:  " << this->CompanyName << endl;
+		cout << "Cost:  " << this->Cost << endl;
+		cout << "Game Type:  " << this->GameType << endl;
+		cout << "Publisher Name:  " << this->PublisherName << endl;
+		cout << "Digital Platforms:  ";
+		
+		for (auto& platform : *DigitalPlatforms)
+		{
+			cout << platform<<", ";
+		}
+		cout << endl;
+	}
+
+	virtual ~IndieGames()
+	{
+		cout << "Destructor called to avoid memory leak(IndieGames)" << endl;
+		delete DigitalPlatforms;
+	}
 };
 
 
 int main()
 {
-	VideoGames* MyConsolGame{ NULL };
+	ConsolGames* MyConsolGame{ NULL };
 
 	MyConsolGame = new ConsolGames("The Last Of Us", 2017, "Naughty Dog", 120000000, "PS4", 30000000); 
 
 	MyConsolGame->ShowInformation();
 	MyConsolGame->Anniversary();
 	MyConsolGame->profit(200000000);
-
-
+	MyConsolGame->isExclusive();
 
 	delete MyConsolGame;
+
+	cout << endl;
+
+	IndieGames* MyIndieGame{ NULL };
+
+	MyIndieGame = new IndieGames("Mount And Blade Warband", 2012, "Talewords", 800000, "Action RPG", "Paradox Interactive");
+
+	MyIndieGame->InputPlatforms();
+	MyIndieGame->ShowInformation();
+	MyIndieGame->Anniversary();
+	MyIndieGame->profit(12000000);
+	
+	delete MyIndieGame;
+
 
 	cout << endl;
 	return 0;
