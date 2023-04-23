@@ -97,7 +97,6 @@ public:
 		}
 	}
 
-
 	virtual ~ConsolGames()
 	{
 		cout << "Destructor called to avoid memory leak(ConsolGames)" << endl;
