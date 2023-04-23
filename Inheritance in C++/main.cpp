@@ -22,21 +22,9 @@ public:
 		this->Cost = Cost;
 	}
 
-	void Anniversary()
-	{
-		cout << 2023 - ReleaseDate << " th Anniversary." << endl;
-	}
+	virtual void Anniversary() = 0;
 
-	void profit(long int Gained)
-	{
-		if (Gained - Cost < 0) {
-			cout << "You didn't make profit from your game!!" << endl;
-			cout << "Your loss is " << Gained - Cost << " USD." << endl;
-		}
-		else {
-			cout << "Your game has made " << Gained - Cost << " USD." << endl;
-		}
-	}
+	virtual void profit(long int Gained) = 0;
 
 	virtual void ShowInformation() = 0;
 
@@ -93,6 +81,23 @@ public:
 		cout << "Number of Copied Sold:  " << NumberOfCopiedSold << endl;
 	}
 
+	void Anniversary()
+	{
+		cout << 2023 - ReleaseDate << " th Anniversary." << endl;
+	}
+
+	void profit(long int Gained)
+	{
+		if (Gained - Cost < 0) {
+			cout << "You didn't make profit from your game!!" << endl;
+			cout << "Your loss is " << Gained - Cost << " USD." << endl;
+		}
+		else {
+			cout << "Your game has made " << Gained - Cost << " USD." << endl;
+		}
+	}
+
+
 	virtual ~ConsolGames()
 	{
 		cout << "Destructor called to avoid memory leak(ConsolGames)" << endl;
@@ -119,6 +124,22 @@ public:
 		DigitalPlatforms = new list<string>;
 	}
     
+	void Anniversary()
+	{
+		cout << 2023 - ReleaseDate << " th Anniversary." << endl;
+	}
+
+	void profit(long int Gained)
+	{
+		if (Gained - Cost < 0) {
+			cout << "You didn't make profit from your game!!" << endl;
+			cout << "Your loss is " << Gained - Cost << " USD." << endl;
+		}
+		else {
+			cout << "Your game has made " << Gained - Cost << " USD." << endl;
+		}
+	}
+
 	void InputPlatforms()
 	{
 		size_t n{};
