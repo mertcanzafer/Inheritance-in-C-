@@ -112,75 +112,7 @@ private:
 	string PublisherName;  // Most of the indie games requires publishers from the outside
 	list<string>* DigitalPlatforms;    // Steam, EpicGames, Origin, GamePass...
 
-public:
 
-	IndieGames(string NameOftheGame = "", int ReleaseDate = 0, string CompanyName = "", long int Cost = 0,
-		string GameType = "", string PublisherName = "")
-		:VideoGames(NameOftheGame, ReleaseDate, CompanyName, Cost), DigitalPlatforms{ NULL }
-	{
-		this->GameType = GameType;
-		this->PublisherName = PublisherName;
-		DigitalPlatforms = new list<string>;
-	}
-    
-	void Anniversary()
-	{
-		cout << 2023 - ReleaseDate << " th Anniversary." << endl;
-	}
-
-	void profit(long int Gained)
-	{
-		if (Gained - Cost < 0) {
-			cout << "You didn't make profit from your game!!" << endl;
-			cout << "Your loss is " << Gained - Cost << " USD." << endl;
-		}
-		else {
-			cout << "Your game has made " << Gained - Cost << " USD." << endl;
-		}
-	}
-
-	void InputPlatforms()
-	{
-		size_t n{};
-		string PlatformName;
-
-		cout << "Please enter how many platforms your game have: ";
-		cin >> n;
-		cin.ignore();
-		cout << "Please enter Platform Name where your game will be released." << endl;
-		
-		for (size_t i = 0; i < n; ++i)
-		{
-			getline(cin, PlatformName);
-			DigitalPlatforms->push_back(PlatformName);
-		}
-
-		cout << endl<<endl;
-
-	}
-	
-	void ShowInformation()
-	{
-		cout << "Name:  " << this->NameOfTheGame << endl;
-		cout << "Release Date:  " << this->ReleaseDate << endl;
-		cout << "Company Name:  " << this->CompanyName << endl;
-		cout << "Cost:  " << this->Cost << endl;
-		cout << "Game Type:  " << this->GameType << endl;
-		cout << "Publisher Name:  " << this->PublisherName << endl;
-		cout << "Digital Platforms:  ";
-		
-		for (auto& platform : *DigitalPlatforms)
-		{
-			cout << platform<<", ";
-		}
-		cout << endl;
-	}
-
-	virtual ~IndieGames()
-	{
-		cout << "Destructor called to avoid memory leak(IndieGames)" << endl;
-		delete DigitalPlatforms;
-	}
 };
 
 
